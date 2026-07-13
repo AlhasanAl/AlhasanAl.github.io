@@ -86,7 +86,7 @@ const projects = {
     <p>End-to-end pings returned <strong>0% packet loss</strong>, confirming DHCP, NAT, VLAN,
     and inter-LAN routing were all working together.</p>
 
-    <img src="images/ping.png" alt="Successful ping test showing 0% packet loss">
+    <img src="images/ping2.png" alt="Successful ping test showing 0% packet loss">
   `,
 },
 
