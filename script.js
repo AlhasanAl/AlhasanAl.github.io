@@ -91,18 +91,47 @@ const projects = {
 },
 
   aws: {
-    title: "AWS High-Availability Build",
+    title: "AWS High-Availability Proof of Concept",
     body: `
-      <p><strong>The build:</strong> A resilient web tier on AWS — Windows EC2 instances behind
-      an Application Load Balancer, DNS handled by Route 53, health and metrics through
-      CloudWatch, and application state in DynamoDB.</p>
+      <p>A two-instance, load-balanced web environment on AWS, built to practice designing for
+      <strong>failover and observability</strong> rather than a single fragile server.</p>
 
-      <p><strong>The point:</strong> Practice designing for failover and observability rather
-      than a single fragile server. The difference between "it runs" and "it stays running"
-      is architecture, not effort.</p>
+      <h3>Compute</h3>
+      <p>Two Windows Server 2019 EC2 instances (t2.micro), each with an attached 5 GB EBS volume.
+      Both passed 2/2 status checks and ran behind a shared security group.</p>
 
-      <p><strong>Also produced:</strong> A cost comparison across AWS, Azure, and GCP to reason
-      about total cost of ownership before committing to a provider.</p>
+      <img src="images/aws-ec2.png" alt="Two EC2 instances running with 2/2 status checks passed">
+
+      <h3>Load balancing</h3>
+      <p>An internet-facing <strong>Application Load Balancer</strong> distributing traffic across
+      both instances in separate availability zones (us-east-1a and us-east-1b). DNS handled
+      through a <strong>Route 53</strong> hosted zone with a CNAME alias pointing at the load
+      balancer — so the endpoint stays stable even when the infrastructure behind it changes.</p>
+
+      <img src="images/aws-alb.png" alt="Application Load Balancer spanning two availability zones">
+
+      <h3>Monitoring</h3>
+      <p><strong>CloudWatch</strong> tracking CPU utilization, disk I/O, and network throughput
+      across both instances — the difference between "it's running" and "I'd know if it stopped."</p>
+
+      <img src="images/aws-cloudwatch.png" alt="CloudWatch metrics dashboard showing CPU and network metrics">
+
+      <h3>Data layer</h3>
+      <p>A <strong>DynamoDB</strong> table storing customer records, queried and verified through
+      the console.</p>
+
+      <img src="images/aws-dynamodb.png" alt="DynamoDB table with customer records">
+
+      <h3>What I'd change before production</h3>
+      <p>The lab security group allowed SSH (22) and RDP (3389) inbound from <code>0.0.0.0/0</code>
+      — the entire internet. That's acceptable in a sandbox and unacceptable anywhere real. In
+      production I'd restrict management ports to a bastion host or a known CIDR range, drop RDP
+      from the public internet entirely, and move the instances into private subnets with only the
+      load balancer exposed.</p>
+
+      <p>I also hit a <strong>503 from the load balancer</strong> before the target group finished
+      registering the instances as healthy — a useful reminder that a <em>provisioned</em> ALB and a
+      <em>working</em> ALB aren't the same thing, and that health checks are the first place to look.</p>
     `,
   },
 
