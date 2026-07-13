@@ -349,3 +349,18 @@ section.visible {
 }
 
 .modal__close:hover { color: var(--accent); border-color: var(--accent); }
+
+.modal__box img {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 1.25rem 0;
+  background: #fff;
+  padding: 0.5rem;
+}
+
+.modal__box h3 {
+  margin: 1.75rem 0 0.5rem;
+  color: var(--accent);
+  font-size: 1rem;
+}

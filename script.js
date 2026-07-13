@@ -36,30 +36,45 @@ const projects = {
   network: {
   title: "Enterprise Multi-LAN Internetwork",
   body: `
-    <p><strong>What it is:</strong> A three-LAN internetwork designed and simulated in Cisco
-    Packet Tracer, modeling a 4G/5G-style architecture that carries both voice and data.</p>
+    <p>A three-LAN internetwork designed and simulated in Cisco Packet Tracer, modeling a
+    4G/5G-style architecture carrying both voice and data traffic.</p>
 
-    <p><strong>LAN 1 — Cellular.</strong> A Central Office Server (192.68.10.2) running DHCP,
-    two cell towers, and three smartphones. Devices authenticate through the carrier
-    infrastructure before receiving service.</p>
+    <img src="images/topology.png" alt="Complete three-LAN internetwork topology">
 
-    <p><strong>LAN 2 — WiFi.</strong> A basic service set: three access points serving five
-    laptops and two smartphones, secured with WPA2-PSK and AES. Every client supplies the
-    pre-shared key before it can associate and pull a DHCP lease.</p>
+    <p><strong>The backbone:</strong> Each LAN reaches the internetwork through its own
+    <strong>2911 gateway</strong> over serial links, using static public addresses
+    (172.0.10.1, 172.0.20.1, 172.0.30.1). Internally, every LAN runs private addressing via
+    DHCP, with <strong>NAT overload (PAT)</strong> on each gateway so private hosts share the
+    public interface across the serial backbone.</p>
 
-    <p><strong>LAN 3 — Wired + VoIP.</strong> Three Cisco 7960 IP phones daisy-chained with
-    three PCs, so each phone's built-in switch port passes data to its PC while carrying voice
-    on a dedicated voice VLAN. VLAN segmentation keeps voice and data separated at the switch.</p>
+    <h3>LAN 1 — Cellular</h3>
+    <p>A Central Office Server (192.68.10.2) providing DHCP, two cell towers, and three
+    smartphones. Devices authenticate through the carrier infrastructure before receiving
+    service, and NAT hides every internal address from the outside network.</p>
 
-    <p><strong>The backbone:</strong> Each LAN reaches the internetwork through its own 2911
-    gateway over serial links, using static public addresses (172.0.10.1, 172.0.20.1,
-    172.0.30.1). Internally every LAN runs private addressing via DHCP, with NAT overload (PAT)
-    on each gateway so private hosts share the public interface.</p>
+    <img src="images/lan1.png" alt="LAN 1 cellular topology">
 
-    <p><strong>How I proved it worked:</strong> Traced ICMP traffic in Simulation mode from a
-    PC in LAN 3, through the IP phone and switch, across all three gateways. End-to-end pings
-    returned <strong>0% packet loss</strong> — confirming DHCP, NAT, VLAN, and inter-LAN routing
-    were all functioning together.</p>
+    <h3>LAN 2 — WiFi</h3>
+    <p>A basic service set: three access points serving five laptops and two smartphones,
+    secured with <strong>WPA2-PSK and AES</strong>. Every client must supply the pre-shared key
+    before it can associate and pull a DHCP lease.</p>
+
+    <img src="images/lan2.png" alt="LAN 2 WiFi topology">
+
+    <h3>LAN 3 — Wired + VoIP</h3>
+    <p>Three Cisco 7960 IP phones daisy-chained with three PCs, so each phone's built-in switch
+    port passes data through to its PC while carrying voice on a dedicated
+    <strong>voice VLAN</strong>. VLAN segmentation separates voice from data at the switch, with
+    WPA2-PSK protecting the wireless segment.</p>
+
+    <img src="images/lan3.png" alt="LAN 3 wired and VoIP topology">
+
+    <h3>Verification</h3>
+    <p>I traced ICMP traffic in Simulation mode from a PC in LAN 3 — through the IP phone and
+    switch, across all three gateways. End-to-end pings returned <strong>0% packet loss</strong>,
+    confirming DHCP, NAT, VLAN, and inter-LAN routing were all working together.</p>
+
+    <img src="images/ping.png" alt="Successful ping test showing 0% packet loss">
   `,
 },
 
