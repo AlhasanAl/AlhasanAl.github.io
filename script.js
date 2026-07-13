@@ -34,33 +34,34 @@ sections.forEach((section) => spy.observe(section));
 /* ---- Project data ---- */
 const projects = {
   network: {
-    title: "Enterprise Multi-LAN Internetwork",
-    body: `
-      <p><strong>The build:</strong> A three-LAN enterprise network in Cisco Packet Tracer —
-      a cellular LAN, a Wi-Fi LAN, and a wired/VoIP LAN — connected across a serial WAN
-      using NAT overload so internal hosts share a single public range.</p>
+  title: "Enterprise Multi-LAN Internetwork",
+  body: `
+    <p><strong>What it is:</strong> A three-LAN internetwork designed and simulated in Cisco
+    Packet Tracer, modeling a 4G/5G-style architecture that carries both voice and data.</p>
 
-      <p><strong>The problem:</strong> After adding NAT, traffic from the internal LANs
-      started dying mid-path. Routing was fine and both ends looked healthy, which made it
-      look like a routing issue. It wasn't — packets were being translated twice, so return
-      traffic had nowhere to go.</p>
+    <p><strong>LAN 1 — Cellular.</strong> A Central Office Server (192.68.10.2) running DHCP,
+    two cell towers, and three smartphones. Devices authenticate through the carrier
+    infrastructure before receiving service.</p>
 
-      <p><strong>The fix:</strong> An extended ACL with a deny statement, so internal-to-internal
-      traffic was excluded from translation before the NAT rule could grab it a second time.
-      Order mattered: the deny had to be evaluated before the broad permit.</p>
+    <p><strong>LAN 2 — WiFi.</strong> A basic service set: three access points serving five
+    laptops and two smartphones, secured with WPA2-PSK and AES. Every client supplies the
+    pre-shared key before it can associate and pull a DHCP lease.</p>
 
-      <p><strong>Also solved:</strong> Corrected the serial subnet mask to unify the public IPs,
-      worked around Packet Tracer's DHCP default-gateway bug, and deployed VoIP on a 2811 router
-      running CME.</p>
+    <p><strong>LAN 3 — Wired + VoIP.</strong> Three Cisco 7960 IP phones daisy-chained with
+    three PCs, so each phone's built-in switch port passes data to its PC while carrying voice
+    on a dedicated voice VLAN. VLAN segmentation keeps voice and data separated at the switch.</p>
 
-      <p><strong>Delivered:</strong> Topology diagrams, a technical report with a block diagram,
-      and a security design addendum mapped to the NIST Cybersecurity Framework 2.0.</p>
+    <p><strong>The backbone:</strong> Each LAN reaches the internetwork through its own 2911
+    gateway over serial links, using static public addresses (172.0.10.1, 172.0.20.1,
+    172.0.30.1). Internally every LAN runs private addressing via DHCP, with NAT overload (PAT)
+    on each gateway so private hosts share the public interface.</p>
 
-      <p><strong>What I took from it:</strong> NAT problems love to disguise themselves as
-      routing problems. When connectivity dies mid-path but both ends are healthy, check
-      translation before you re-check routes.</p>
-    `,
-  },
+    <p><strong>How I proved it worked:</strong> Traced ICMP traffic in Simulation mode from a
+    PC in LAN 3, through the IP phone and switch, across all three gateways. End-to-end pings
+    returned <strong>0% packet loss</strong> — confirming DHCP, NAT, VLAN, and inter-LAN routing
+    were all functioning together.</p>
+  `,
+},
 
   aws: {
     title: "AWS High-Availability Build",
