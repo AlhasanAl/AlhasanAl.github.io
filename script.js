@@ -75,6 +75,18 @@ const projects = {
     confirming DHCP, NAT, VLAN, and inter-LAN routing were all working together.</p>
 
     <img src="images/ping1.png" alt="Successful ping test showing 0% packet loss">
+
+    <h3>Verification</h3>
+    <p>I traced ICMP traffic in Simulation mode from a PC in LAN 3 — through the IP phone and
+    switch, across all three gateways. The event list shows each hop the packet takes across
+    the serial backbone.</p>
+
+    <img src="images/pdu.png" alt="Packet Tracer simulation panel showing ICMP traffic traversing all three LANs">
+
+    <p>End-to-end pings returned <strong>0% packet loss</strong>, confirming DHCP, NAT, VLAN,
+    and inter-LAN routing were all working together.</p>
+
+    <img src="images/ping.png" alt="Successful ping test showing 0% packet loss">
   `,
 },
 
