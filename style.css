@@ -372,3 +372,47 @@ section.visible {
   color: var(--accent);
 }
 .contact__list img {flex-shrink: 0; }
+
+/* ===== Floating particles ===== */
+.particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particles span {
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.12;
+  bottom: -20px;
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-105vh) translateX(40px);
+    opacity: 0;
+  }
+}
+
+/* Vary each one so it doesn't look mechanical */
+.particles span:nth-child(1)  { left: 8%;  animation-duration: 22s; animation-delay: 0s;  }
+.particles span:nth-child(2)  { left: 18%; animation-duration: 30s; animation-delay: 3s;  width: 4px; height: 4px; }
+.particles span:nth-child(3)  { left: 28%; animation-duration: 26s; animation-delay: 7s;  }
+.particles span:nth-child(4)  { left: 38%; animation-duration: 34s; animation-delay: 1s;  width: 8px; height: 8px; }
+.particles span:nth-child(5)  { left: 48%; animation-duration: 24s; animation-delay: 10s; }
+.particles span:nth-child(6)  { left: 58%; animation-duration: 32s; animation-delay: 5s;  width: 4px; height: 4px; }
+.particles span:nth-child(7)  { left: 68%; animation-duration: 28s; animation-delay: 12s; }
+.particles span:nth-child(8)  { left: 78%; animation-duration: 36s; animation-delay: 2s;  width: 5px; height: 5px; }
+.particles span:nth-child(9)  { left: 88%; animation-duration: 25s; animation-delay: 8s;  }
+.particles span:nth-child(10) { left: 95%; animation-duration: 30s; animation-delay: 15s; width: 3px; height: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .particles { display: none; }
+}
