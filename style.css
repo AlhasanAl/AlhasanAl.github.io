@@ -364,3 +364,11 @@ section.visible {
   color: var(--accent);
   font-size: 1rem;
 }
+
+.contact_list a { 
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--accent);
+}
+.contact__list img {flex-shrink: 0; }
