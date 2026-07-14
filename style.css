@@ -416,3 +416,11 @@ section.visible {
 @media (prefers-reduced-motion: reduce) {
   .particles { display: none; }
 }
+
+body {
+  background: transparent;
+}
+
+html {
+  background: var(--bg);
+}
