@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects &middot; Alhasan Abdulrazzaq</title>
+<meta name="description" content="Case studies: enterprise networking in Packet Tracer, an AWS high-availability build, a Kali Linux security lab, and an IT asset management system design.">
+<link rel="icon" href="favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<div class="statusbar" aria-hidden="true">
+  <div class="statusbar__track">
+    <span><i class="dot"></i> SYSTEMS OPERATIONAL</span>
+    <span class="tick">//</span>
+    <span>AVAILABLE FOR IT &amp; SECURITY ROLES</span>
+    <span class="tick">//</span>
+    <span>CHICAGO, IL</span>
+    <span class="tick">//</span>
+    <span>B.S. IT &middot; ASU '26</span>
+    <span class="tick">//</span>
+    <span><i class="dot"></i> SYSTEMS OPERATIONAL</span>
+    <span class="tick">//</span>
+    <span>AVAILABLE FOR IT &amp; SECURITY ROLES</span>
+    <span class="tick">//</span>
+    <span>CHICAGO, IL</span>
+    <span class="tick">//</span>
+    <span>B.S. IT &middot; ASU '26</span>
+    <span class="tick">//</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">AA</span> Alhasan&nbsp;Abdulrazzaq
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="blog.html">Writing</a>
+      <a href="index.html#about">About</a>
+      <a class="nav__cta" href="index.html#contact">Get in touch</a>
+    </nav>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="pagehead">
+    <div class="wrap reveal">
+      <span class="eyebrow"><i class="dot"></i> ALL PROJECTS</span>
+      <h1>Things I've built &amp; broken</h1>
+      <p>Case studies from the home lab and coursework: networking, cloud architecture,
+         and systems design, written up in full.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <article class="case reveal" id="net-internetwork">
+        <div class="case__meta"><span>NET-001</span><span class="tag tag--live">Complete</span></div>
+        <h2>Enterprise Multi-LAN Internetwork</h2>
+        <div class="case__chips">
+          <span class="chip">Packet Tracer</span><span class="chip">NAT</span>
+          <span class="chip">ACLs</span><span class="chip">VoIP</span><span class="chip">NIST CSF</span>
+        </div>
+        <div class="article__body">
+          <p>A three-LAN internetwork designed and simulated in Cisco Packet Tracer, modeling a
+          4G/5G-style architecture carrying both voice and data traffic.</p>
+
+          <img src="images/topology.png" alt="Complete three-LAN internetwork topology">
+
+          <p><strong>The backbone:</strong> Each LAN reaches the internetwork through its own
+          <strong>2911 gateway</strong> over serial links, using static public addresses
+          (172.0.10.1, 172.0.20.1, 172.0.30.1). Internally, every LAN runs private addressing via
+          DHCP, with <strong>NAT overload (PAT)</strong> on each gateway so private hosts share the
+          public interface across the serial backbone.</p>
+
+          <h3>LAN 1: Cellular</h3>
+          <p>A Central Office Server (192.68.10.2) providing DHCP, two cell towers, and three
+          smartphones. Devices authenticate through the carrier infrastructure before receiving
+          service, and NAT hides every internal address from the outside network.</p>
+
+          <img src="images/lan1.png" alt="LAN 1 cellular topology">
+
+          <h3>LAN 2: WiFi</h3>
+          <p>A basic service set: three access points serving five laptops and two smartphones,
+          secured with <strong>WPA2-PSK and AES</strong>. Every client must supply the pre-shared key
+          before it can associate and pull a DHCP lease.</p>
+
+          <img src="images/lan2.png" alt="LAN 2 WiFi topology">
+
+          <h3>LAN 3: Wired + VoIP</h3>
+          <p>Three Cisco 7960 IP phones daisy-chained with three PCs, so each phone's built-in switch
+          port passes data through to its PC while carrying voice on a dedicated
+          <strong>voice VLAN</strong>. VLAN segmentation separates voice from data at the switch, with
+          WPA2-PSK protecting the wireless segment.</p>
+
+          <img src="images/lan3.png" alt="LAN 3 wired and VoIP topology">
+
+          <h3>Verification</h3>
+          <p>I traced ICMP traffic in Simulation mode from a PC in LAN 3 through the IP phone and
+          switch, across all three gateways. End-to-end pings returned <strong>0% packet loss</strong>,
+          confirming DHCP, NAT, VLAN, and inter-LAN routing were all working together.</p>
+
+          <img src="images/ping1.png" alt="Successful ping test showing 0% packet loss">
+
+          <h3>Trace detail</h3>
+          <p>The Packet Tracer simulation panel shows each hop the packet takes across the serial
+          backbone, from the originating PC in LAN 3 through every intermediate gateway.</p>
+
+          <img src="images/pdu.png" alt="Packet Tracer simulation panel showing ICMP traffic traversing all three LANs">
+
+          <p>End-to-end pings returned <strong>0% packet loss</strong>, confirming DHCP, NAT, VLAN,
+          and inter-LAN routing were all working together.</p>
+
+          <img src="images/ping2.png" alt="Successful ping test showing 0% packet loss">
+        </div>
+      </article>
+
+      <article class="case reveal" id="aws-poc">
+        <div class="case__meta"><span>CLD-002</span><span class="tag tag--live">Complete</span></div>
+        <h2>AWS High-Availability Proof of Concept</h2>
+        <div class="case__chips">
+          <span class="chip">EC2</span><span class="chip">ALB</span>
+          <span class="chip">Route 53</span><span class="chip">CloudWatch</span><span class="chip">DynamoDB</span>
+        </div>
+        <div class="article__body">
+          <p>A two-instance, load-balanced web environment on AWS, built to practice designing for
+          <strong>failover and observability</strong> rather than a single fragile server.</p>
+
+          <h3>Compute</h3>
+          <p>Two Windows Server 2019 EC2 instances (t2.micro), each with an attached 5 GB EBS volume.
+          Both passed 2/2 status checks and ran behind a shared security group.</p>
+
+          <img src="images/aws-ec2.png" alt="Two EC2 instances running with 2/2 status checks passed">
+
+          <h3>Load balancing</h3>
+          <p>An internet-facing <strong>Application Load Balancer</strong> distributing traffic across
+          both instances in separate availability zones (us-east-1a and us-east-1b). DNS handled
+          through a <strong>Route 53</strong> hosted zone with a CNAME alias pointing at the load
+          balancer so the endpoint stays stable even when the infrastructure behind it changes.</p>
+
+          <img src="images/aws-alb.png" alt="Application Load Balancer spanning two availability zones">
+
+          <h3>Monitoring</h3>
+          <p><strong>CloudWatch</strong> tracking CPU utilization, disk I/O, and network throughput
+          across both instances, the difference between "it's running" and "I'd know if it stopped."</p>
+
+          <img src="images/aws-cloudwatch.png" alt="CloudWatch metrics dashboard showing CPU and network metrics">
+
+          <h3>Data layer</h3>
+          <p>A <strong>DynamoDB</strong> table storing customer records, queried and verified through
+          the console.</p>
+
+          <img src="images/aws-dynamodb.png" alt="DynamoDB table with customer records">
+
+          <h3>What I'd change before production</h3>
+          <p>The lab security group allowed SSH (22) and RDP (3389) inbound from <code>0.0.0.0/0</code>:
+          the entire internet. That's acceptable in a sandbox and unacceptable anywhere real. In
+          production I'd restrict management ports to a bastion host or a known CIDR range, drop RDP
+          from the public internet entirely, and move the instances into private subnets with only the
+          load balancer exposed.</p>
+
+          <p>I also hit a <strong>503 from the load balancer</strong> before the target group finished
+          registering the instances as healthy, a useful reminder that a <em>provisioned</em> ALB and a
+          <em>working</em> ALB aren't the same thing, and that health checks are the first place to look.</p>
+        </div>
+      </article>
+
+      <article class="case reveal" id="sec-lab">
+        <div class="case__meta"><span>SEC-003</span><span class="tag tag--build">Ongoing</span></div>
+        <h2>Security Home Lab</h2>
+        <div class="case__chips">
+          <span class="chip">Kali Linux</span><span class="chip">OWASP</span>
+          <span class="chip">Docker</span><span class="chip">Nmap</span>
+        </div>
+        <div class="article__body">
+          <p><strong>The setup:</strong> A Kali Linux environment running OWASP Juice Shop in Docker,
+          a deliberately vulnerable application built by OWASP specifically for training.</p>
+
+          <p><strong>What I'm learning:</strong> Reconnaissance, common web vulnerability classes, and
+          how small misconfigurations chain into real access.</p>
+
+          <p><strong>The rule:</strong> Everything runs against targets I own or that are explicitly
+          built to be attacked. Learning offensive security and staying on the right side of the line
+          aren't in tension; the discipline depends on that boundary.</p>
+
+          <p><strong>Why a defender should learn offense:</strong> You defend systems better once
+          you've seen how they come apart.</p>
+        </div>
+      </article>
+
+      <article class="case reveal" id="itam">
+        <div class="case__meta"><span>SYS-004</span><span class="tag tag--live">Complete</span></div>
+        <h2>IT Asset Management System</h2>
+        <div class="case__chips">
+          <span class="chip">Systems Design</span><span class="chip">RBAC</span>
+          <span class="chip">SSO + 2FA</span><span class="chip">SQL</span>
+        </div>
+        <div class="article__body">
+          <p><strong>The project:</strong> A full systems analysis and design engagement, delivered
+          across multiple milestones from project charter to final presentation.</p>
+
+          <p><strong>Artifacts:</strong> A requirements document with four swim-lane process maps,
+          a design document with wireframes and a network topology, and a final presentation deck.</p>
+
+          <p><strong>The design:</strong> Single sign-on with two-factor authentication, role-based
+          access across three roles, and standardized asset states and conditions on a cloud stack
+          backed by SQL.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p>&copy; <span id="year"></span> Alhasan Abdulrazzaq &middot; Built &amp; hosted on GitHub Pages</p>
+    <div class="footer__links">
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Writing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
