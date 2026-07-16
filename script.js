@@ -36,7 +36,7 @@ const projects = {
   network: {
   title: "Enterprise Multi-LAN Internetwork",
   body: `
-    <p>A three-LAN internetwork designed and simulated in Cisco Packet Tracer, modeling a
+    <p>A three LAN internetwork designed and simulated in Cisco Packet Tracer, modeling a
     4G/5G-style architecture carrying both voice and data traffic.</p>
 
     <img src="images/topology.png" alt="Complete three-LAN internetwork topology">
@@ -70,14 +70,14 @@ const projects = {
     <img src="images/lan3.png" alt="LAN 3 wired and VoIP topology">
 
     <h3>Verification</h3>
-    <p>I traced ICMP traffic in Simulation mode from a PC in LAN 3 — through the IP phone and
-    switch, across all three gateways. End-to-end pings returned <strong>0% packet loss</strong>,
+    <p>I traced ICMP traffic in Simulation mode from a PC in LAN 3 through the IP phone and
+    switch, across all three gateways. End to end pings returned <strong>0% packet loss</strong>,
     confirming DHCP, NAT, VLAN, and inter-LAN routing were all working together.</p>
 
     <img src="images/ping1.png" alt="Successful ping test showing 0% packet loss">
 
     <h3>Verification</h3>
-    <p>I traced ICMP traffic in Simulation mode from a PC in LAN 3 — through the IP phone and
+    <p>I traced ICMP traffic in Simulation mode from a PC in LAN 3 through the IP phone and
     switch, across all three gateways. The event list shows each hop the packet takes across
     the serial backbone.</p>
 
@@ -103,16 +103,16 @@ const projects = {
       <img src="images/aws-ec2.png" alt="Two EC2 instances running with 2/2 status checks passed">
 
       <h3>Load balancing</h3>
-      <p>An internet-facing <strong>Application Load Balancer</strong> distributing traffic across
+      <p>An internet facing <strong>Application Load Balancer</strong> distributing traffic across
       both instances in separate availability zones (us-east-1a and us-east-1b). DNS handled
       through a <strong>Route 53</strong> hosted zone with a CNAME alias pointing at the load
-      balancer — so the endpoint stays stable even when the infrastructure behind it changes.</p>
+      balancer so the endpoint stays stable even when the infrastructure behind it changes.</p>
 
       <img src="images/aws-alb.png" alt="Application Load Balancer spanning two availability zones">
 
       <h3>Monitoring</h3>
       <p><strong>CloudWatch</strong> tracking CPU utilization, disk I/O, and network throughput
-      across both instances — the difference between "it's running" and "I'd know if it stopped."</p>
+      across both instances the difference between "it's running" and "I'd know if it stopped."</p>
 
       <img src="images/aws-cloudwatch.png" alt="CloudWatch metrics dashboard showing CPU and network metrics">
 
@@ -124,13 +124,13 @@ const projects = {
 
       <h3>What I'd change before production</h3>
       <p>The lab security group allowed SSH (22) and RDP (3389) inbound from <code>0.0.0.0/0</code>
-      — the entire internet. That's acceptable in a sandbox and unacceptable anywhere real. In
+      the entire internet. That's acceptable in a sandbox and unacceptable anywhere real. In
       production I'd restrict management ports to a bastion host or a known CIDR range, drop RDP
       from the public internet entirely, and move the instances into private subnets with only the
       load balancer exposed.</p>
 
       <p>I also hit a <strong>503 from the load balancer</strong> before the target group finished
-      registering the instances as healthy — a useful reminder that a <em>provisioned</em> ALB and a
+      registering the instances as healthy a useful reminder that a <em>provisioned</em> ALB and a
       <em>working</em> ALB aren't the same thing, and that health checks are the first place to look.</p>
     `,
   },
@@ -139,14 +139,14 @@ const projects = {
     title: "Security Home Lab",
     body: `
       <p><strong>The setup:</strong> A Kali Linux environment running OWASP Juice Shop in Docker
-      — a deliberately vulnerable application built by OWASP specifically for training.</p>
+      a deliberately vulnerable application built by OWASP specifically for training.</p>
 
       <p><strong>What I'm learning:</strong> Reconnaissance, common web vulnerability classes, and
       how small misconfigurations chain into real access.</p>
 
       <p><strong>The rule:</strong> Everything runs against targets I own or that are explicitly
       built to be attacked. Learning offensive security and staying on the right side of the line
-      aren't in tension — the discipline depends on that boundary.</p>
+      aren't in tension the discipline depends on that boundary.</p>
 
       <p><strong>Why a defender should learn offense:</strong> You defend systems better once
       you've seen how they come apart.</p>
@@ -159,10 +159,10 @@ const projects = {
       <p><strong>The project:</strong> A full systems analysis and design engagement, delivered
       across multiple milestones from project charter to final presentation.</p>
 
-      <p><strong>Artifacts:</strong> A requirements document with four swim-lane process maps,
+      <p><strong>Artifacts:</strong> A requirements document with four swim lane process maps,
       a design document with wireframes and a network topology, and a final presentation deck.</p>
 
-      <p><strong>The design:</strong> Single sign-on with two-factor authentication, role-based
+      <p><strong>The design:</strong> Single sign-on with two factor authentication, role-based
       access across three roles, and standardized asset states and conditions on a cloud stack
       backed by SQL.</p>
     `,
